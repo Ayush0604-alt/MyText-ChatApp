@@ -1,6 +1,7 @@
 // ============================
 // INITIALIZATION
 // ============================
+const API_URL = "https://mytext-chatapp-1.onrender.com";
 
 console.log("Dashboard JS Loaded");
 
@@ -13,7 +14,7 @@ if (!token || !user) {
 
 document.getElementById("currentUsername").innerText = user.username;
 
-const socket = io("http://localhost:5000");
+const socket = io(API_URL);
 socket.emit("setup", user);
 
 let unreadCounts = {};
@@ -47,7 +48,7 @@ socket.on("userOffline", (userId) => {
 const chatList = document.getElementById("chatList");
 
 async function loadChats() {
-  const res = await fetch("http://localhost:5000/api/chats", {
+  const res = await fetch(`${api}/api/chats`, {
     headers: { Authorization: "Bearer " + token },
   });
 
@@ -161,7 +162,7 @@ userSearchInput.addEventListener("input", async (e) => {
 
   try {
     const res = await fetch(
-      `http://localhost:5000/api/users?search=${value}`,
+      `${API_URL}/api/users?search=${value}`,
       {
         headers: {
           Authorization: "Bearer " + token,
@@ -209,7 +210,7 @@ function renderSearchResults(users) {
 }
 async function createOrOpenChat(userId) {
 
-  const res = await fetch("http://localhost:5000/api/chats", {
+  const res = await fetch(`${API_URL}/api/chats`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -241,7 +242,7 @@ const messagesContainer = document.getElementById("messages");
 
 async function loadMessages(chatId) {
   const res = await fetch(
-    `http://localhost:5000/api/messages/${chatId}`,
+    `${API_URL}/api/messages/${chatId}`,
     { headers: { Authorization: "Bearer " + token } }
   );
 
@@ -299,7 +300,7 @@ async function sendMessage() {
   const text = messageInput.value.trim();
   if (!text || !currentChat) return;
 
-  const res = await fetch("http://localhost:5000/api/messages", {
+  const res = await fetch(`${API_URL}/api/messages`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -379,7 +380,7 @@ socket.on("stopTyping", () => {
 // ============================
 
 async function markAsSeen(chatId) {
-  await fetch("http://localhost:5000/api/messages/seen", {
+  await fetch(`${API_URL}/api/messages/seen`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -414,7 +415,7 @@ avatarInput.addEventListener("change", async () => {
   reader.onloadend = async () => {
     const base64Image = reader.result;
 
-    const res = await fetch("http://localhost:5000/api/users/avatar", {
+    const res = await fetch(`${API_URL}/api/users/avatar`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

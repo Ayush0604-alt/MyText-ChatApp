@@ -2,8 +2,8 @@
 // CONFIG
 // ============================
 
-const API_URL = "https://your-backend-name.onrender.com"; 
-// ⚠️ Replace with your real Render URL
+const API_URL = "https://mytext-chatapp-1.onrender.com";
+
 
 // ============================
 // TOGGLE LOGIN / REGISTER
