@@ -9,7 +9,7 @@ const token = localStorage.getItem("token");
 const user = JSON.parse(localStorage.getItem("user"));
 
 if (!token || !user) {
-  window.location.href = "auth.html";
+  window.location.href = "index.html";
 }
 
 document.getElementById("currentUsername").innerText = user.username;
@@ -232,7 +232,7 @@ document.getElementById("logoutBtn").addEventListener("click", () => {
   socket.disconnect();
   localStorage.removeItem("token");
   localStorage.removeItem("user");
-  window.location.href = "auth.html";
+  window.location.href = "index.html";
 });
 // ============================
 // LOAD MESSAGES
