@@ -48,7 +48,7 @@ socket.on("userOffline", (userId) => {
 const chatList = document.getElementById("chatList");
 
 async function loadChats() {
-  const res = await fetch(`${api}/api/chats`, {
+  const res = await fetch(`${API_URL}/api/chats`, {
     headers: { Authorization: "Bearer " + token },
   });
 
