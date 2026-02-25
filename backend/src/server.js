@@ -6,7 +6,7 @@ const { Server } = require("socket.io");
 
 const app = require("./app");
 const connectDB = require("./config/db");
-
+const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 
 connectDB();
@@ -14,11 +14,12 @@ connectDB();
 // Create HTTP server
 const server = http.createServer(app);
 
-// Attach Socket.IO
+app.use(cors());
+
 const io = new Server(server, {
   cors: {
-    origin: true,
-    credentials: true,
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
   },
 });
 
