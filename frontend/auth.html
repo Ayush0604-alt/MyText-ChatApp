@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MyText - Authentication</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="auth-container">
+  <div class="auth-card">
+
+    <!-- Left Panel -->
+    <div class="auth-panel">
+      <h1>MyText</h1>
+      <p>Real-time messaging redefined.</p>
+      <button id="toggleBtn">Switch to Register</button>
+    </div>
+
+    <!-- Right Form Area -->
+    <div class="auth-forms">
+
+      <!-- Login Form -->
+      <form id="loginForm" class="form active">
+        <h2>Login</h2>
+        <input type="email" placeholder="Email" required id="loginEmail">
+        <input type="password" placeholder="Password" required id="loginPassword">
+        <button type="submit">Login</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="registerForm" class="form">
+        <h2>Register</h2>
+        <input type="text" placeholder="Username" required id="registerUsername">
+        <input type="email" placeholder="Email" required id="registerEmail">
+        <input type="password" placeholder="Password" required id="registerPassword">
+        <button type="submit">Register</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MyText - Dashboard</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+
+    <div class="profile-header">
+      <img id="profileAvatar" class="avatar" src="" />
+       <input type="file" id="avatarInput" hidden />
+      <div class="profile-info">
+        <h3 id="currentUsername">Username</h3>
+        <span class="status online">Online</span>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+      </div>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search users..." id="userSearch">
+    </div>
+
+    <div class="chat-list" id="chatList">
+      <!-- Chats will load dynamically -->
+    </div>
+
+  </div>
+
+  <!-- Chat Window -->
+  <div class="chat-window">
+
+    <div class="chat-header">
+      <img id="chatAvatar" class="chat-avatar" src="" />
+      <div class="chat-info">
+        <h3 id="chatUsername">Select a chat</h3>
+        <span id="chatStatus">Offline</span>
+      </div>
+    </div>
+
+    <div class="messages" id="messages">
+      <!-- Messages appear here -->
+    </div>
+
+    <div class="typing-indicator" id="typingIndicator">
+      <!-- Typing text -->
+    </div>
+
+    <div class="message-input">
+      <input type="text" id="messageInput" placeholder="Type a message...">
+      <button id="sendBtn">Send</button>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
