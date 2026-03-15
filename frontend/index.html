@@ -2,10 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MyText - Authentication</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Render wake-up banner ── */
+    #render-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: #1a1a2e;
+      color: #fff;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+
+    #render-banner .spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #ff6b00;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    #render-banner.hidden {
+      display: none;
+    }
+
+    #render-banner .banner-text {
+      color: #ccc;
+    }
+
+    #render-banner .banner-text span {
+      color: #ff922b;
+      font-weight: 600;
+    }
+
+    /* Push auth form down when banner is visible */
+    body.banner-active {
+      padding-top: 44px;
+    }
+  </style>
 </head>
 <body>
+
+<!-- Render cold-start warning banner -->
+<div id="render-banner">
+  <div class="spinner"></div>
+  <p class="banner-text">
+    <span>Waking up the server...</span>
+    This may take up to 30 seconds on first load. Please wait.
+  </p>
+</div>
 
 <div class="auth-container">
   <div class="auth-card">
@@ -42,5 +105,27 @@
 </div>
 
 <script src="js/auth.js"></script>
+<script>
+  // Ping the server and hide the banner once it responds
+  const API_URL = "https://mytext-chatapp-1.onrender.com";
+  const banner = document.getElementById("render-banner");
+
+  document.body.classList.add("banner-active");
+
+  async function wakeServer() {
+    try {
+      const res = await fetch(`${API_URL}/`, { method: "GET" });
+      if (res.ok) {
+        banner.classList.add("hidden");
+        document.body.classList.remove("banner-active");
+      }
+    } catch (e) {
+      // Server still waking, retry after 3s
+      setTimeout(wakeServer, 3000);
+    }
+  }
+
+  wakeServer();
+</script>
 </body>
 </html>

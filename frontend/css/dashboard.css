@@ -529,11 +529,54 @@ html, body {
   }
 }
 
+/* ============================
+   DESKTOP — always show sidebar
+   ============================ */
+
+@media (min-width: 641px) {
+  .sidebar {
+    transform: translateX(0) !important;
+    position: relative;
+    height: 100vh;
+    box-shadow: none;
+  }
+
+  .sidebar-overlay {
+    display: none !important;
+  }
+
+  .back-btn {
+    display: none !important;
+  }
+
+  .menu-btn {
+    display: none !important;
+  }
+
+  /* Always show chat window content on desktop */
+  .chat-window.no-chat .messages,
+  .chat-window.no-chat .typing-indicator,
+  .chat-window.no-chat .message-input {
+    display: flex;
+  }
+
+  .chat-window.no-chat .chat-header {
+    display: flex;
+  }
+
+  .chat-window.no-chat .empty-state {
+    display: flex;
+  }
+
+  .message {
+    max-width: 60%;
+  }
+}
+
 /* Tablet */
 @media (min-width: 641px) and (max-width: 900px) {
   :root { --sidebar-width: 260px; }
-
-  .message { max-width: 75%; }
+  .message { max-width: 70%; }
 }
 
 /* ============================

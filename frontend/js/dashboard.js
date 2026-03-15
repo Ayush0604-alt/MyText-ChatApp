@@ -2,7 +2,9 @@
 // INITIALIZATION
 // ============================
 const API_URL = "https://mytext-chatapp-1.onrender.com";
-//const API_URL="http://localhost:5000";
+//const API_URL = "http://localhost:5000";
+
+
 console.log("Dashboard JS Loaded");
 
 const token = localStorage.getItem("token");
@@ -473,9 +475,9 @@ avatarInput.addEventListener("change", async () => {
     return;
   }
 
-  // Validate file size (max 2MB)
-  if (file.size > 2 * 1024 * 1024) {
-    showToast("Image must be under 2MB", "⚠️");
+  // Validate file size (max 10MB)
+  if (file.size > 10 * 1024 * 1024) {
+    showToast("Image must be under 10MB", "⚠️");
     return;
   }
 
