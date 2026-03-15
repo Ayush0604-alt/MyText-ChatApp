@@ -2,57 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>MyText - Dashboard</title>
   <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
 
+<!-- Mobile sidebar overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- Toast container -->
+<div id="toast-container"></div>
+
 <div class="dashboard">
 
   <!-- Sidebar -->
-  <div class="sidebar">
+  <div class="sidebar" id="sidebar">
 
     <div class="profile-header">
-      <img id="profileAvatar" class="avatar" src="" />
-       <input type="file" id="avatarInput" hidden />
+      <!-- Avatar wrapper — tappable on mobile -->
+      <div class="avatar-wrapper" id="avatarWrapper" title="Change profile picture">
+        <img id="profileAvatar" class="avatar" src="" alt="Your avatar" />
+        <div class="avatar-edit-icon">✏️</div>
+      </div>
+      <input type="file" id="avatarInput" hidden accept="image/*" />
+
       <div class="profile-info">
         <h3 id="currentUsername">Username</h3>
-        <span class="status online">Online</span>
-        <button id="logoutBtn" class="logout-btn">Logout</button>
+        <span class="status online">● Online</span>
       </div>
+      <button id="logoutBtn" class="logout-btn">Logout</button>
     </div>
 
     <div class="search-bar">
-      <input type="text" placeholder="Search users..." id="userSearch">
+      <input type="text" placeholder="🔍 Search or start new chat..." id="userSearch">
     </div>
 
     <div class="chat-list" id="chatList">
-      <!-- Chats will load dynamically -->
+      <!-- Chats load dynamically -->
     </div>
 
   </div>
 
   <!-- Chat Window -->
-  <div class="chat-window">
+  <div class="chat-window no-chat" id="chatWindow">
 
-    <div class="chat-header">
-      <img id="chatAvatar" class="chat-avatar" src="" />
+    <!-- Header -->
+    <div class="chat-header" id="chatHeader">
+      <!-- Back button (mobile) -->
+      <button class="back-btn" id="backBtn">‹</button>
+
+      <!-- Burger button to open sidebar (mobile, shown when chat is open) -->
+      <img id="chatAvatar" class="chat-avatar" src="" alt="" />
       <div class="chat-info">
         <h3 id="chatUsername">Select a chat</h3>
         <span id="chatStatus">Offline</span>
       </div>
     </div>
 
-    <div class="messages" id="messages">
-      <!-- Messages appear here -->
+    <!-- Empty state (shown when no chat selected, especially on mobile) -->
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">💬</div>
+      <p>Welcome to MyText</p>
+      <small>Search for someone above or tap a chat to start messaging.</small>
     </div>
 
-    <div class="typing-indicator" id="typingIndicator">
-      <!-- Typing text -->
-    </div>
+    <div class="messages" id="messages"></div>
+
+    <div class="typing-indicator" id="typingIndicator"></div>
 
     <div class="message-input">
-      <input type="text" id="messageInput" placeholder="Type a message...">
+      <input type="text" id="messageInput" placeholder="Type a message..." autocomplete="off">
       <button id="sendBtn">Send</button>
     </div>
 
